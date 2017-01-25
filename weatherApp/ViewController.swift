@@ -40,7 +40,7 @@ class ViewController: UIViewController {
                     
                     let dataString = NSString(data: unwrappedData, encoding: String.Encoding.utf8.rawValue)
                     
-                    print(dataString)
+                    print(dataString!)
                     
                 }
                 
