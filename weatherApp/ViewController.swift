@@ -27,17 +27,20 @@ class ViewController: UIViewController {
         
         let request = NSMutableURLRequest(url: url)
         
-        let task = URLSession.shared().dataTask(with: request as URLRequest) {
+        let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
             
             if error != nil {
                 
-                print(error)
+                print("nope")
                 
             } else {
                 
                 if let unwrappedData = data {
                     
+                    let dataString = NSString(data: unwrappedData, encoding: String.Encoding.utf8.rawValue)
+                    
+                    print(dataString)
                     
                 }
                 
