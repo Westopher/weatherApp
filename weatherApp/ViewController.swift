@@ -10,9 +10,44 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var cityTextField: UITextField!
+    
+    @IBOutlet var resultLabel: UILabel!
+    
+    @IBAction func getWeather(_ sender: Any) {
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let url = URL(string: "http://www.weather-forecast.com/locations/London/forecasts/latest")!
+        
+        let request = NSMutableURLRequest(url: url)
+        
+        let task = URLSession.shared().dataTask(with: request as URLRequest) {
+            data, response, error in
+            
+            if error != nil {
+                
+                print(error)
+                
+            } else {
+                
+                if let unwrappedData = data {
+                    
+                    
+                }
+                
+            }
+            
+            
+        }
+        
+        task.resume()
+        
     }
 
     override func didReceiveMemoryWarning() {
