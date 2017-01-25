@@ -51,7 +51,7 @@
                                 <rect key="frame" x="182.66666666666666" y="181" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
-                                    <action selector="getWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tfi-iW-jQ3"/>
+                                    <action selector="getWeather:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c42-TX-C6Y"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9V-Zz-jAR">
@@ -86,7 +86,6 @@
                     </view>
                     <connections>
                         <outlet property="cityTextField" destination="VaM-Be-0z0" id="ae1-fx-juI"/>
-                        <outlet property="getWeather" destination="wpG-23-CBh" id="MmW-yC-meu"/>
                         <outlet property="resultLabel" destination="x9V-Zz-jAR" id="99G-5x-Fyv"/>
                     </connections>
                 </viewController>
