@@ -15,15 +15,9 @@ class ViewController: UIViewController {
     @IBOutlet var resultLabel: UILabel!
     
     @IBAction func getWeather(_ sender: Any) {
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        let url = URL(string: "http://www.weather-forecast.com/locations/London/forecasts/latest")!
-        
+
+        if let url = URL(string: "http://www.weather-forecast.com/locations/" + cityTextField.text!.replacingOccurrences(of: " ", with: "-") + "/forecasts/latest") {
+
         let request = NSMutableURLRequest(url: url)
         
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
@@ -45,18 +39,18 @@ class ViewController: UIViewController {
                     
                     if let contentArray = dataString?.components(separatedBy: stringSeparator) {
                         
-                        if contentArray.count > 0 {
+                        if contentArray.count > 1 {
                             
                             stringSeparator = "</span>"
                             
                             let newContentArray = contentArray[1].components(separatedBy: stringSeparator)
+                            
+                            if newContentArray.count > 1 {
                                 
-                                if newContentArray.count > 0 {
-                                    
-                                    message = newContentArray[0].replacingOccurrences(of: "&deg;", with: "°")
-                                    
-                                    print(message)
-                                }
+                                message = newContentArray[0].replacingOccurrences(of: "&deg;", with: "°")
+                                
+                                print(message)
+                            }
                             
                             
                         }
@@ -71,7 +65,7 @@ class ViewController: UIViewController {
             if message == "" {
                 
                 message = "The weather there couldn't be found, please try again."
-            
+                
             }
             
             DispatchQueue.main.sync(execute: {
@@ -83,6 +77,19 @@ class ViewController: UIViewController {
         }
         
         task.resume()
+
+        } else {
+            
+            resultLabel.text = "The weather there couldn't be found, please try again."
+            
+        }
+    }
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
         
     }
 
