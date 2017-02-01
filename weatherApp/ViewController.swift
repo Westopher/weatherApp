@@ -39,7 +39,14 @@ class ViewController: UIViewController {
                     
                     let dataString = NSString(data: unwrappedData, encoding: String.Encoding.utf8.rawValue)
                     
-                    print(dataString)
+                    let stringSeparator = "Weather Forecast Summary:</b><span class=\"read-more-small\"><span class=\"read-more-content\"> <span class=\"phrase\">"
+                    
+                    if let contentArray = dataString?.components(separatedBy: stringSeparator) {
+                        
+                        print(contentArray)
+                        
+                    }
+                    
                     
                 }
                 
