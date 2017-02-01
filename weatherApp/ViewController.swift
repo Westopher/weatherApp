@@ -29,6 +29,8 @@ class ViewController: UIViewController {
         let task = URLSession.shared.dataTask(with: request as URLRequest) {
             data, response, error in
             
+            var message = ""
+            
             if error != nil {
                 
                 print(error)
@@ -39,11 +41,25 @@ class ViewController: UIViewController {
                     
                     let dataString = NSString(data: unwrappedData, encoding: String.Encoding.utf8.rawValue)
                     
-                    let stringSeparator = "Weather Forecast Summary:</b><span class=\"read-more-small\"><span class=\"read-more-content\"> <span class=\"phrase\">"
+                    var stringSeparator = "Weather Forecast Summary:</b><span class=\"read-more-small\"><span class=\"read-more-content\"> <span class=\"phrase\">"
                     
                     if let contentArray = dataString?.components(separatedBy: stringSeparator) {
                         
-                        print(contentArray)
+                        if contentArray.count > 0 {
+                            
+                            stringSeparator = "</span>"
+                            
+                            let newContentArray = contentArray[1].components(separatedBy: stringSeparator)
+                                
+                                if newContentArray.count > 0 {
+                                    
+                                    message = newContentArray[0].replacingOccurrences(of: "&deg;", with: "°")
+                                    
+                                    print(message)
+                                }
+                            
+                            
+                        }
                         
                     }
                     
@@ -52,6 +68,17 @@ class ViewController: UIViewController {
                 
             }
             
+            if message == "" {
+                
+                message = "The weather there couldn't be found, please try again."
+            
+            }
+            
+            DispatchQueue.main.sync(execute: {
+                
+                self.resultLabel.text = message
+                
+            })
             
         }
         
